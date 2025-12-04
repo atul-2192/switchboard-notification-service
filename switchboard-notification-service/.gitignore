@@ -1,0 +1,111 @@
+# -----------------------------
+# Java / Maven
+# -----------------------------
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.iml
+*.log
+*.tmp
+*.out
+*.class
+*.cache
+
+# -----------------------------
+# Spring Boot / IDE
+# -----------------------------
+.springBeans
+.mvn/
+.settings/
+.idea/
+*.iws
+*.ipr
+
+# -----------------------------
+# Maven
+# -----------------------------
+/.mvn/
+/target/
+/pom.xml.tag
+/pom.xml.releaseBackup
+/pom.xml.versionsBackup
+/logs/
+/dependency-reduced-pom.xml
+/buildNumber.properties
+
+# -----------------------------
+# IntelliJ IDEA
+# -----------------------------
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+.idea_modules/
+# Crashlytics, JetBrains etc.
+*.hprof
+# Ignore module files
+*.iml
+*.ipr
+
+# -----------------------------
+# Eclipse
+# -----------------------------
+.project
+.classpath
+.settings/
+bin/
+
+# -----------------------------
+# VS Code
+# -----------------------------
+.vscode/
+
+# -----------------------------
+# Operating System
+# -----------------------------
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.nfs*
+
+# -----------------------------
+# Logs and temp files
+# -----------------------------
+*.log
+*.tmp
+*.swp
+*.bak
+*.orig
+
+# -----------------------------
+# Environment files
+# -----------------------------
+.env
+.env.local
+.env.*.local
+
+# -----------------------------
+# Others
+# -----------------------------
+node_modules/
+dist/
+out/
+coverage/
+*.class
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/

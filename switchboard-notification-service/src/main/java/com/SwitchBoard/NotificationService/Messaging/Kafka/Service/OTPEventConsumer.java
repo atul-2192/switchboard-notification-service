@@ -1,10 +1,11 @@
-package com.SwitchBoard.NotificationService.Kafka.Service;
+package com.SwitchBoard.NotificationService.Messaging.Kafka.Service;
 
 
 import com.SwitchBoard.NotificationService.DTO.OTPRequestBody;
 import com.SwitchBoard.NotificationService.Service.OTPService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import switchboard.schemas.OTPNotificationEvent;
@@ -12,6 +13,7 @@ import switchboard.schemas.OTPNotificationEvent;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Profile("dev")
 public class OTPEventConsumer {
 
     private final OTPService otpService;
