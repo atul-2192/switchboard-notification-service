@@ -13,7 +13,7 @@ import switchboard.schemas.OTPNotificationEvent;
 @RequiredArgsConstructor
 @Slf4j
 @Profile("prod")
-public class OTPEventConsumer {
+public class RabbitOTPEventConsumer {
 
     private final OTPService otpService;
 

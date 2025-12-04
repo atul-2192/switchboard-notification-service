@@ -13,7 +13,7 @@ import switchboard.schemas.OnboardingEvent;
 @RequiredArgsConstructor
 @Slf4j
 @Profile("prod")
-public class OnboardingEventConsumer {
+public class RabbitOnboardingEventConsumer {
 
     private final OnboaringService onboaringService;
 

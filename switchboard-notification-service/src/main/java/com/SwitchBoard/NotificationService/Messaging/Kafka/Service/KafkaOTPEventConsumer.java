@@ -14,7 +14,7 @@ import switchboard.schemas.OTPNotificationEvent;
 @Service
 @RequiredArgsConstructor
 @Profile("dev")
-public class OTPEventConsumer {
+public class KafkaOTPEventConsumer {
 
     private final OTPService otpService;
 
