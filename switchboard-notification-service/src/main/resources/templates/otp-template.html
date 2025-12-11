@@ -5,154 +5,392 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SwitchBoard OTP</title>
     <style>
+        /* Import Google Fonts - Inter & Poppins for consistency */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800;900&display=swap');
+
         body {
-          background-color: #0b0b0b;
-          color: #ffffff;
-          font-family: 'Inter', Arial, sans-serif;
-          margin: 0;
-          padding: 0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F5F1E8;
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         .container {
-          max-width: 520px;
-          margin: 50px auto;
-          background-color: #121212;
-          border-radius: 14px;
-          box-shadow: 0 0 20px rgba(0, 0, 255, 0.1);
-          padding: 40px 35px;
+            max-width: 550px;
+            margin: 50px auto;
+            background: #ffffff;
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(45, 27, 20, 0.12);
+            overflow: hidden;
+            width: 100%;
+        }
+
+        /* Header - Coffee theme */
+        .header {
+            background: linear-gradient(135deg, #2D1B14 0%, #3D2B1E 50%, #2D1B14 100%);
+            padding: 30px 35px;
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Decorative coffee elements */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            right: -30px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            border-radius: 50%;
+            opacity: 0.08;
         }
 
         .logo {
-          font-weight: 700;
-          font-size: 22px;
-          letter-spacing: 0.5px;
-          margin-bottom: 25px;
-          text-align: left;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
+            font-size: 28px;
+            letter-spacing: 0.5px;
+            margin: 0;
+            text-align: left;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
         }
 
-        .logo .switch {
-          color: #ffffff;
+        .logo span {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
 
-        .logo .board {
-          color: #007bff;
+        /* Content */
+        .content {
+            padding: 40px 35px;
         }
 
         .title {
-          font-size: 18px;
-          font-weight: 600;
-          margin-bottom: 15px;
-          text-align: left;
+            font-size: 24px;
+            font-weight: 700;
+            color: #2D1B14;
+            margin-bottom: 20px;
+            text-align: left;
         }
 
         .text {
-          font-size: 14px;
-          line-height: 1.6;
-          color: #dddddd;
-          margin-bottom: 25px;
-          text-align: left;
-          max-width: 420px;
+            font-size: 15px;
+            line-height: 1.7;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .greeting {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* OTP Box - Coffee themed */
+        .otp-wrapper {
+            text-align: center;
+            margin: 30px 0;
         }
 
         .otp-box {
-          background-color: #2a2a2a;
-          color: #ffffff;
-          font-weight: 700;
-          font-size: 24px;
-          text-align: center;
-          border-radius: 10px;
-          padding: 14px 0;
-          margin: 10px 0 20px 0;
-          letter-spacing: 4px;
-          width: 180px;
+            display: inline-block;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF7F2 100%);
+            border: 2px solid #8B4513;
+            color: #2D1B14;
+            font-weight: 800;
+            font-size: 32px;
+            text-align: center;
+            border-radius: 16px;
+            padding: 20px 40px;
+            letter-spacing: 8px;
+            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.15);
+            font-family: 'Poppins', monospace;
         }
 
+        .expiry-text {
+            font-size: 14px;
+            color: #2c3e50;
+            margin: 15px 0 10px 0;
+            text-align: center;
+        }
+
+        .expiry-text strong {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        /* Warning box */
         .warning {
-          font-size: 12px;
-          color: #aaaaaa;
-          margin-top: 10px;
-          line-height: 1.6;
-          text-align: left;
+            background: linear-gradient(135deg, #FFF4E6 0%, #FFE8CC 100%);
+            border-left: 4px solid #D2691E;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 25px 0;
+            font-size: 14px;
+            color: #8B4513;
+            line-height: 1.6;
         }
 
+        .warning-icon {
+            font-size: 18px;
+            margin-right: 8px;
+        }
+
+        /* Info Box - Coffee themed */
         .info-box {
-          background-color: #1a1a1a;
-          border-radius: 10px;
-          padding: 15px 20px;
-          margin-top: 25px;
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF7F2 100%);
+            border-radius: 16px;
+            border: 1px solid rgba(45, 27, 20, 0.08);
+            padding: 24px 28px;
+            margin-top: 30px;
         }
 
         .info-title {
-          font-weight: 600;
-          font-size: 14px;
-          color: #ffffff;
-          margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 16px;
+            color: #2D1B14;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .info-icon {
+            font-size: 20px;
         }
 
         .info-text {
-          font-size: 13px;
-          color: #bbbbbb;
-          line-height: 1.6;
-          margin: 0;
-          padding-left: 15px;
+            font-size: 14px;
+            color: #6b7c93;
+            line-height: 1.8;
+            margin: 0;
+            padding-left: 20px;
         }
 
+        .info-text li {
+            margin-bottom: 8px;
+        }
+
+        /* Footer - Coffee themed */
         .footer {
-          text-align: center;
-          color: #666666;
-          font-size: 12px;
-          margin-top: 35px;
-          padding-top: 15px;
-          border-top: 1px solid #222222;
-          line-height: 1.6;
+            background: linear-gradient(135deg, #FAF7F2 0%, #F5F1E8 100%);
+            text-align: center;
+            color: #6b7c93;
+            font-size: 13px;
+            padding: 24px 30px;
+            border-top: 1px solid rgba(45, 27, 20, 0.08);
+            line-height: 1.7;
         }
 
-        .footer strong {
-          color: #007bff;
+        .footer-brand {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
         }
 
-        @media (max-width: 600px) {
-          .container {
-            padding: 25px;
-          }
+        /* Responsive Design */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 0;
+            }
 
-          .otp-box {
-            font-size: 22px;
-            width: 150px;
-          }
+            .container {
+                margin: 10px;
+                border-radius: 16px;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 20px 18px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .content {
+                padding: 25px 18px;
+            }
+
+            .title {
+                font-size: 18px;
+                margin-bottom: 15px;
+            }
+
+            .text {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .otp-wrapper {
+                margin: 20px 0;
+            }
+
+            .otp-box {
+                font-size: 24px;
+                padding: 16px 20px;
+                letter-spacing: 4px;
+                width: 100%;
+                max-width: 220px;
+                box-sizing: border-box;
+            }
+
+            .expiry-text {
+                font-size: 13px;
+            }
+
+            .warning {
+                padding: 14px 16px;
+                font-size: 13px;
+                margin: 20px 0;
+            }
+
+            .info-box {
+                padding: 18px 16px;
+                margin-top: 20px;
+            }
+
+            .info-title {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+
+            .info-text {
+                font-size: 13px;
+                padding-left: 18px;
+                line-height: 1.7;
+            }
+
+            .info-text li {
+                margin-bottom: 6px;
+            }
+
+            .footer {
+                padding: 18px 18px;
+                font-size: 12px;
+            }
+        }
+
+        /* Extra small phones */
+        @media only screen and (max-width: 380px) {
+            .container {
+                margin: 5px;
+                border-radius: 12px;
+            }
+
+            .header {
+                padding: 18px 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .title {
+                font-size: 16px;
+            }
+
+            .text {
+                font-size: 13px;
+            }
+
+            .otp-box {
+                font-size: 22px;
+                padding: 14px 16px;
+                letter-spacing: 3px;
+                max-width: 180px;
+            }
+
+            .warning {
+                padding: 12px 14px;
+                font-size: 12px;
+            }
+
+            .info-box {
+                padding: 16px 14px;
+            }
+
+            .info-title {
+                font-size: 14px;
+            }
+
+            .info-text {
+                font-size: 12px;
+                padding-left: 15px;
+            }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <div class="logo">
-        <span class="switch">Switch</span><span class="board">Board</span>
+    <!-- Header -->
+    <div class="header">
+        <div class="logo">Switch<span>Board</span></div>
     </div>
 
-    <div class="title">One-Time Password</div>
+    <!-- Content -->
+    <div class="content">
+        <div class="title">🔐 One-Time Password</div>
 
-    <p class="text">
-        Hello <strong >Achiever</strong>,<br>
-        Please use the following One Time Password (OTP) to complete your login:
-    </p>
+        <p class="text">
+            Hello <span class="greeting" th:text="${fullName}">Achiever</span>,<br>
+            Please use the following One Time Password (OTP) to complete your login to SwitchBoard:
+        </p>
 
-    <div class="otp-box" th:text="${otp}">123456</div>
+        <div class="otp-wrapper">
+            <div class="otp-box" th:text="${otp}">123456</div>
+        </div>
 
-    <p class="text" style="margin-bottom: 10px;">This OTP will expire in <strong th:text="${expiryMinutes}">5 minutes</strong>.</p>
-    <p class="warning">⚠️ Do not share this OTP with anyone for security reasons.</p>
+        <p class="expiry-text">
+            This OTP will expire in <strong th:text="${expiryMinutes}">5</strong> <strong>minutes</strong>.
+        </p>
 
-    <div class="info-box">
-        <div class="info-title">Why SwitchBoard?</div>
-        <ul class="info-text">
-            <li>Track and manage personal or team tasks effortlessly.</li>
-            <li>Stay motivated with progress tracking and rewards.</li>
-            <li>Enjoy secure login and timely notifications.</li>
-        </ul>
+        <div class="warning">
+            <span class="warning-icon">⚠️</span>
+            <strong>Security Notice:</strong> Do not share this OTP with anyone. SwitchBoard will never ask you for this code via email, phone, or any other method.
+        </div>
+
+        <div class="info-box">
+            <div class="info-title">
+                <span class="info-icon">✨</span>
+                Why SwitchBoard?
+            </div>
+            <ul class="info-text">
+                <li>Organize tasks with intuitive Kanban-style workspaces</li>
+                <li>Create personalized roadmaps with AI assistance</li>
+                <li>Practice interviews with AI-powered mock sessions</li>
+                <li>Showcase your journey with a beautiful portfolio</li>
+            </ul>
+        </div>
     </div>
 
+    <!-- Footer -->
     <div class="footer">
-        You received this email because you are trying to log in to <strong>@SwitchBoard</strong>.<br>
-        If this wasn’t you, please ignore this email.
+        <p>You received this email because you are trying to log in to <span class="footer-brand">SwitchBoard</span>.</p>
+        <p>If this wasn't you, please ignore this email and ensure your account is secure.</p>
     </div>
 </div>
 </body>

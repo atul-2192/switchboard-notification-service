@@ -1,4 +1,4 @@
-package com.SwitchBoard.NotificationService.Service.Notification;
+package com.SwitchBoard.NotificationService.Notification;
 
 import com.SwitchBoard.NotificationService.DTO.OTPRequestBody;
 import com.SwitchBoard.NotificationService.DTO.OnboardingRequestBody;
