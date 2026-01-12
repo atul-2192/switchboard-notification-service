@@ -20,10 +20,10 @@ public class SESConfig {
     @Value("${aws.ses.region:us-east-1}")
     private String awsRegion;
 
-    @Value("${aws.ses.access-key}")
+    @Value("${ses.access-key}")
     private String awsAccessKey;
 
-    @Value("${aws.ses.secret-key}")
+    @Value("${ses.secret-key}")
     private String awsSecretKey;
 
     @Value("${aws.ses.from-email}")
