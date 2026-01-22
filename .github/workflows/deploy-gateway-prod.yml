@@ -36,6 +36,9 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ghcr.io/atul-2192/notification-service:prod
+          build-args: |
+            GITHUB_ACTOR=${{ github.actor }}
+            GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }}
 
       # 5 SSH into VPS and redeploy notification-service
       - name: Deploy on Contabo VPS
