@@ -47,10 +47,7 @@ public class GmailConfig {
     @Value("${spring.mail.properties.mail.smtp.writetimeout:5000}")
     private int writeTimeout;
 
-    /**
-     * Creates and configures JavaMailSender bean for Gmail SMTP
-     * @return Configured JavaMailSender instance
-     */
+
     @Bean
     public JavaMailSender gmailMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();

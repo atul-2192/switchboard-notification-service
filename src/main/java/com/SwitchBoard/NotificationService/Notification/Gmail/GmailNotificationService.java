@@ -18,7 +18,7 @@ import org.thymeleaf.context.Context;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Profile("dev")
+@Profile({"dev","local"})
 public class GmailNotificationService implements NotificationSender {
 
     private final JavaMailSender mailSender;

@@ -9,10 +9,6 @@ import software.amazon.awssdk.auth.credentials.StaticCredentialsProvider;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.ses.SesClient;
 
-/**
- * AWS SES Configuration for production environment
- * This configuration is active when the profile is "prod"
- */
 @Configuration
 @Profile("prod")
 public class SESConfig {
