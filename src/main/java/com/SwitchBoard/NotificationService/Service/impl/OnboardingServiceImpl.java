@@ -2,7 +2,7 @@ package com.SwitchBoard.NotificationService.Service.impl;
 
 import com.SwitchBoard.NotificationService.DTO.ApiResponse;
 import com.SwitchBoard.NotificationService.DTO.OnboardingRequestBody;
-import com.SwitchBoard.NotificationService.Service.Notification.NotificationSender;
+import com.SwitchBoard.NotificationService.Notification.NotificationSender;
 import com.SwitchBoard.NotificationService.Service.OnboaringService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

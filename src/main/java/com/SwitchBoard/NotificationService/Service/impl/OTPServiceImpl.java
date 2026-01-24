@@ -3,7 +3,7 @@ package com.SwitchBoard.NotificationService.Service.impl;
 import com.SwitchBoard.NotificationService.DTO.ApiResponse;
 import com.SwitchBoard.NotificationService.DTO.OTPRequestBody;
 import com.SwitchBoard.NotificationService.Exception.EmailSendException;
-import com.SwitchBoard.NotificationService.Service.Notification.NotificationSender;
+import com.SwitchBoard.NotificationService.Notification.NotificationSender;
 import com.SwitchBoard.NotificationService.Service.OTPService;
 
 import lombok.RequiredArgsConstructor;

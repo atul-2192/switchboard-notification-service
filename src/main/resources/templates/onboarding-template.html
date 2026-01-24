@@ -2,114 +2,365 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Welcome to SwitchBoard</title>
     <style>
+        /* Import Google Fonts - Inter for consistency with UI */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@600;700;800&display=swap');
+
         body {
-            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f6f8;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #F5F1E8;
             margin: 0;
             padding: 0;
-            color: #333;
+            color: #2c3e50;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
+
         .container {
             max-width: 650px;
             margin: 40px auto;
             background: #ffffff;
-            border-radius: 16px;
+            border-radius: 24px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            box-shadow: 0 20px 60px rgba(45, 27, 20, 0.12);
+            width: 100%;
         }
-        /* Header */
+
+        /* Header - Coffee theme with gradient */
         .header {
-            background: linear-gradient(135deg, #2563eb, #1e3a8a);
-            padding: 30px 20px;
+            background: linear-gradient(135deg, #2D1B14 0%, #3D2B1E 50%, #2D1B14 100%);
+            padding: 40px 30px;
             text-align: center;
             color: #fff;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Decorative coffee elements */
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 50%, #CD853F 100%);
+            border-radius: 50%;
+            opacity: 0.08;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            left: -30px;
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4aa4f7 0%, #49d5b6 100%);
+            border-radius: 50%;
+            opacity: 0.1;
+        }
+
         .logo {
-            font-size: 26px;
-            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+            font-size: 32px;
+            font-weight: 800;
             letter-spacing: 0.5px;
-            margin: 0;
+            margin: 0 0 8px 0;
+            position: relative;
+            z-index: 1;
+            color: #ffffff;
         }
+
         .logo span {
-            color: #60a5fa;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
         }
+
         .header h1 {
-            margin-top: 10px;
-            font-size: 22px;
+            margin-top: 12px;
+            font-size: 20px;
             font-weight: 500;
-            color: #e5e7eb;
+            color: #F5F1E8;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
         }
+
         /* Content */
         .content {
-            padding: 40px 35px;
+            padding: 45px 40px;
             text-align: left;
-            line-height: 1.6;
+            line-height: 1.7;
+            background: #ffffff;
         }
+
         .content h2 {
-            font-size: 20px;
-            margin-bottom: 12px;
-            color: #1e3a8a;
+            font-size: 22px;
+            margin-bottom: 16px;
+            color: #2D1B14;
+            font-weight: 700;
         }
+
+        .greeting {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 700;
+        }
+
+        .emoji {
+            font-size: 24px;
+            margin-left: 4px;
+        }
+
         .content p {
-            margin: 10px 0;
+            margin: 14px 0;
             font-size: 15px;
-            color: #444;
+            color: #2c3e50;
+            line-height: 1.7;
         }
-        /* Feature Cards */
+
+        /* Feature Cards - Modern grid layout */
         .features {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 25px 0;
+            gap: 18px;
+            margin: 30px 0;
         }
-        .card {
-            background: #f9fafb;
-            padding: 18px 20px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            margin-bottom: 10px;
 
+        .card {
+            background: linear-gradient(135deg, #F5F1E8 0%, #FAF7F2 100%);
+            padding: 24px 22px;
+            border-radius: 16px;
+            border: 1px solid rgba(45, 27, 20, 0.08);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #4aa4f7 0%, #49d5b6 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .card:hover::before {
+            opacity: 1;
+        }
+
         .card h3 {
-            margin: 0 0 8px;
+            margin: 0 0 10px;
             font-size: 16px;
-            color: #111827;
+            color: #2D1B14;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
+
+        .card-icon {
+            font-size: 22px;
+            line-height: 1;
+        }
+
         .card p {
             font-size: 14px;
-            color: #555;
+            color: #6b7c93;
             margin: 0;
+            line-height: 1.6;
         }
-        /* CTA Button */
+
+        /* CTA Button - Coffee gradient matching UI */
+        .btn-wrapper {
+            text-align: center;
+            margin-top: 35px;
+        }
+
         .btn {
             display: inline-block;
-            background: #2563eb;
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
             color: #fff;
             text-decoration: none;
-            padding: 12px 28px;
-            border-radius: 8px;
+            padding: 14px 36px;
+            border-radius: 12px;
             font-size: 15px;
-            font-weight: 500;
-            margin-top: 25px;
-            transition: all 0.25s ease;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            box-shadow: 0 8px 24px rgba(139, 69, 19, 0.4);
+            transition: all 0.3s ease;
         }
+
         .btn:hover {
-            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(139, 69, 19, 0.5);
+            background: linear-gradient(135deg, #A0522D 0%, #E67E22 100%);
         }
-        /* Footer */
+
+        /* Divider */
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent 0%, rgba(45, 27, 20, 0.1) 50%, transparent 100%);
+            margin: 30px 0;
+        }
+
+        /* Footer - Coffee themed */
         .footer {
-            background: #f9fafb;
+            background: linear-gradient(135deg, #FAF7F2 0%, #F5F1E8 100%);
             text-align: center;
-            padding: 20px;
-            font-size: 12px;
-            color: #6b7280;
-            line-height: 1.5;
-            border-top: 1px solid #e5e7eb;
+            padding: 28px 30px;
+            font-size: 13px;
+            color: #6b7c93;
+            line-height: 1.7;
+            border-top: 1px solid rgba(45, 27, 20, 0.08);
         }
+
+        .footer p {
+            margin: 8px 0;
+        }
+
         .footer b {
-            color: #111827;
+            color: #2D1B14;
+            font-weight: 700;
+        }
+
+        .footer-brand {
+            color: #4aa4f7;
+            font-weight: 800;
+        }
+
+        /* Responsive Design */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 0;
+            }
+
+            .container {
+                margin: 10px;
+                border-radius: 16px;
+                max-width: 100%;
+            }
+
+            .header {
+                padding: 25px 20px;
+            }
+
+            .logo {
+                font-size: 22px;
+            }
+
+            .header h1 {
+                font-size: 16px;
+                margin-top: 8px;
+            }
+
+            .content {
+                padding: 25px 20px;
+            }
+
+            .content h2 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .content p {
+                font-size: 14px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin: 20px 0;
+            }
+
+            .card {
+                padding: 16px 14px;
+            }
+
+            .card h3 {
+                font-size: 15px;
+            }
+
+            .card p {
+                font-size: 13px;
+            }
+
+            .divider {
+                margin: 20px 0;
+            }
+
+            .btn-wrapper {
+                margin-top: 25px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            .footer {
+                padding: 20px 18px;
+                font-size: 12px;
+            }
+        }
+
+        /* Extra small phones */
+        @media only screen and (max-width: 380px) {
+            .container {
+                margin: 5px;
+                border-radius: 12px;
+            }
+
+            .header {
+                padding: 20px 15px;
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .header h1 {
+                font-size: 14px;
+            }
+
+            .content {
+                padding: 20px 15px;
+            }
+
+            .content h2 {
+                font-size: 16px;
+            }
+
+            .card {
+                padding: 14px 12px;
+            }
+
+            .card h3 {
+                font-size: 14px;
+            }
+
+            .card-icon {
+                font-size: 18px;
+            }
+
+            .card p {
+                font-size: 12px;
+            }
         }
     </style>
 </head>
@@ -123,37 +374,42 @@
 
     <!-- Content -->
     <div class="content">
-        <h2>Hello <strong th:text="${fullName}">Achiever</strong> 👋</h2>
-        <p>We’re thrilled to have you with us! SwitchBoard is your all-in-one companion to learn, grow, and achieve your goals with focus and structure.</p>
+        <h2>Hello <span class="greeting" th:text="${fullName}">Achiever</span><span class="emoji">👋</span></h2>
+        <p>We're thrilled to have you with us! SwitchBoard is your all-in-one companion to learn, grow, and achieve your goals with focus and structure.</p>
 
         <!-- Feature Cards -->
         <div class="features">
             <div class="card">
-                <h3>🗂 Workspace</h3>
+                <h3><span class="card-icon">🗂</span> Workspace</h3>
                 <p>Break big goals into smaller, achievable tasks. Visualize your journey with an intuitive kanban-style flow.</p>
             </div>
             <div class="card">
-                <h3>🗺 Roadmap</h3>
+                <h3><span class="card-icon">🗺</span> Roadmap</h3>
                 <p>Plan smarter with personalized and AI-generated roadmaps designed for your success.</p>
             </div>
             <div class="card">
-                <h3>🤖 AI Mock Interviews</h3>
+                <h3><span class="card-icon">🤖</span> AI Mock Interviews</h3>
                 <p>Practice with realistic AI-driven mock interviews to sharpen your skills and confidence.</p>
             </div>
             <div class="card">
-                <h3>💼 Personalised Portfolio</h3>
+                <h3><span class="card-icon">💼</span> Personalised Portfolio</h3>
                 <p>Showcase your journey, projects, and achievements in one beautiful, personalized portfolio.</p>
             </div>
         </div>
 
+        <div class="divider"></div>
+
         <p>Click below to explore your dashboard and begin your journey with SwitchBoard.</p>
-        <a href="#" class="btn">Go to Dashboard</a>
+
+        <div class="btn-wrapper">
+            <a href="#" class="btn">Go to Dashboard →</a>
+        </div>
     </div>
 
     <!-- Footer -->
     <div class="footer">
-        <p>You received this email because you signed up on <b>SwitchBoard</b>.</p>
-        <p>If you didn’t request this, you can safely ignore this email.</p>
+        <p>You received this email because you signed up on <span class="footer-brand">SwitchBoard</span>.</p>
+        <p>If you didn't request this, you can safely ignore this email.</p>
     </div>
 </div>
 </body>
