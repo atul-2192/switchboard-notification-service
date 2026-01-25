@@ -15,6 +15,8 @@ RUN mkdir -p /root/.m2 && \
     echo "<id>github</id><username>${GITHUB_ACTOR}</username>" >> /root/.m2/settings.xml && \
     echo "<password>${GITHUB_TOKEN}</password>" >> /root/.m2/settings.xml && \
     echo '</server></servers></settings>' >> /root/.m2/settings.xml && \
+    # Skip tests during Docker build - tests are executed in CI/CD pipeline before deployment
+    # This speeds up Docker image creation and avoids redundant test execution
     mvn clean package -DskipTests
 
 # ---------- Runtime stage ----------
